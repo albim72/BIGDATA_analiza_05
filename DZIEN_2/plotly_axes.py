@@ -42,3 +42,22 @@ fig = px.line(df, x="year", y="gdpPercap", color="country",
               animation_frame="year", title="PKB na mieszkańca w czasie (animacja)",
               range_y=[0, 60000])
 fig.show()
+
+
+import plotly.express as px
+
+# Dane Gapminder
+df = px.data.gapminder()
+
+# Animowany wykres: PKB na mieszkańca vs długość życia
+fig = px.scatter(
+    df, x="gdpPercap", y="lifeExp",
+    animation_frame="year", animation_group="country",
+    size="pop", color="continent", hover_name="country",
+    log_x=True, size_max=55, range_x=[100,100000], range_y=[25,90],
+    title="Rozwój krajów: PKB vs Długość życia (Gapminder)"
+)
+
+fig.update_layout(transition={'duration': 500})
+fig.show()
+
